@@ -43,14 +43,12 @@ class Card
     else
       return false, "This is not a recognized credit card carrier."
     end
-
-    luhn_check
   end
 
 
   def verify_char_count(card_length, valid_char_idxs)
     if @char_hash[:nums].length == card_length[0] && @char_hash[:dashes] + @char_hash[:spaces] == 0
-      return true
+      luhn_check
     elsif @char_hash[:nums].length + char_hash[:dashes] == card_length[1] && char_hash[:spaces] == 0
       valid_hashes(valid_char_idxs)
     elsif @char_hash[:nums].length + char_hash[:spaces] == card_length[1] && char_hash[:dashes] == 0
@@ -68,7 +66,7 @@ class Card
         return false, "The card spaces are in wrong position."
       end
     end
-    return true
+    luhn_check
   end
 
   def luhn_check
