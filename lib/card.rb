@@ -29,6 +29,17 @@ class Card
     end
   end
 
+  def validate_amex(card_number_array)
+    if card_number_array.length == 15
+      return true
+    elsif card_number_array.length == 17
+      valid_idxs = [4, 11]
+      valid_hashes(card_number_array, valid_idxs)
+    else
+      return false
+    end
+  end
+
   def valid_hashes(card_number_array, valid_idxs)
     card_number_array.each_with_index do |char, idx|
       if char == "-" && !valid_idxs.include?(idx)

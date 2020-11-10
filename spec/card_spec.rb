@@ -27,24 +27,24 @@ RSpec.describe "a credit card" do
     end
   end
 
-  # context "valid amex cards" do
+  context "valid amex cards" do
 
-  #   it "validates amex card" do
-  #     new_card = Card.new("378282246310005")
-  #     expect(new_card.card_valid).to be true
-  #   end
+    it "validates amex card" do
+      new_card = Card.new("378282246310005")
+      expect(new_card.card_valid).to be true
+    end
 
-  #   it "validates amex card with dashes" do
-  #     new_card = Card.new("3782-822463-10005")
-  #     expect(new_card.card_valid).to be true
-  #   end
+    it "validates amex card with dashes" do
+      new_card = Card.new("3782-822463-10005")
+      expect(new_card.card_valid).to be true
+    end
 
 
-  #   it "validates amex card with spaces" do
-  #     new_card = Card.new("3782 822463 10005")
-  #     expect(new_card.card_valid).to be true
-  #   end
-  # end
+    it "validates amex card with spaces" do
+      new_card = Card.new("3782 822463 10005")
+      expect(new_card.card_valid).to be true
+    end
+  end
 
   context "invalid visa cards" do
 
@@ -66,23 +66,23 @@ RSpec.describe "a credit card" do
 
   end
 
-  # context "invalid amex cards" do
+  context "invalid amex cards" do
 
-  #   it "invalidates amex card" do
-  #     new_card = Card.new("k78282246310005")
-  #     expect(new_card.card_valid).to be false
-  #   end
+    it "invalidates amex card" do
+      new_card = Card.new("k78282246310005")
+      expect(new_card.card_valid).to be false
+    end
 
-  #   it "invalidates amex card with dashes" do
-  #     new_card = Card.new("3782-82-2463-10005")
-  #     expect(new_card.card_valid).to be false
-  #   end
+    it "invalidates amex card with dashes" do
+      new_card = Card.new("3782-82-2463-10005")
+      expect(new_card.card_valid).to be false
+    end
 
 
-  #   it "invalidates amex card with spaces" do
-  #     new_card = Card.new("3782 82246 3 100 05")
-  #     expect(new_card.card_valid).to be false
-  #   end
-  # end
+    it "invalidates amex card with spaces" do
+      new_card = Card.new("3782 82246 3 100 05")
+      expect(new_card.card_valid).to be false
+    end
+  end
 
 end
