@@ -5,6 +5,7 @@ class Card
   AMEX_VALID_CHAR_IDXS = [4, 11]
   VISA_LENGTH = [16, 19]
   VISA_VALID_CHAR_IDXS = [4, 9, 14]
+  VALID_CHARS = [" ", "-"]
 
   def initialize(card_number)
     @card_number = card_number
@@ -33,10 +34,8 @@ class Card
   end
 
   def valid_hashes(card_number_array, valid_char_idxs)
-    card_number_array.each_with_index do |char, idx|
-      if char == "-" && !valid_char_idxs.include?(idx)
-        return false
-      elsif char == " " && !valid_char_idxs.include?(idx)
+    valid_char_idxs.each do |idx|
+      if !VALID_CHARS.include?(card_number_array[idx]) 
         return false
       end
     end

@@ -64,6 +64,11 @@ RSpec.describe "a credit card" do
       expect(new_card.card_valid).to be false
     end
 
+    it "invalidates visa card with spaces" do
+      new_card = Card.new("4242 l242 4h42 424k")
+      expect(new_card.card_valid).to be false
+    end
+
   end
 
   context "invalid amex cards" do
