@@ -1,6 +1,10 @@
 class Card
-
   attr_reader :card_number
+
+  AMEX_LENGTH = [15, 17]
+  AMEX_VALID_CHAR_IDXS = [4, 11]
+  VISA_LENGTH = [16, 19]
+  VISA_VALID_CHAR_IDXS = [4, 9, 14]
 
   def initialize(card_number)
     @card_number = card_number
@@ -10,46 +14,32 @@ class Card
     card_number_array = card_number.split("")
 
     if card_number[0] == "3"
-      validate_amex(card_number_array)
+      parse_card(card_number_array, AMEX_LENGTH, AMEX_VALID_CHAR_IDXS)
     elsif card_number[0] == "4"
-      validate_visa(card_number_array)
+      parse_card(card_number_array, VISA_LENGTH, VISA_VALID_CHAR_IDXS)
     else
       return false
     end
   end
 
-  def validate_visa(card_number_array)
-    if card_number_array.length == 16
+  def parse_card(card_number_array, card_length, valid_char_idxs)
+    if card_number_array.length == card_length[0]
       return true
-    elsif card_number_array.length == 19
-      valid_idxs = [4, 9, 14]
-      valid_hashes(card_number_array, valid_idxs)
+    elsif card_number_array.length == card_length[1]
+      valid_hashes(card_number_array, valid_char_idxs)
     else
       return false
     end
   end
 
-  def validate_amex(card_number_array)
-    if card_number_array.length == 15
-      return true
-    elsif card_number_array.length == 17
-      valid_idxs = [4, 11]
-      valid_hashes(card_number_array, valid_idxs)
-    else
-      return false
-    end
-  end
-
-  def valid_hashes(card_number_array, valid_idxs)
+  def valid_hashes(card_number_array, valid_char_idxs)
     card_number_array.each_with_index do |char, idx|
-      if char == "-" && !valid_idxs.include?(idx)
+      if char == "-" && !valid_char_idxs.include?(idx)
         return false
-      elsif char == " " && !valid_idxs.include?(idx)
+      elsif char == " " && !valid_char_idxs.include?(idx)
         return false
       end
     end
     return true
   end
-
-
 end
