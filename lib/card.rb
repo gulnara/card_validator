@@ -54,7 +54,7 @@ class Card
     elsif @char_hash[:nums].length + char_hash[:spaces] == card_length[1] && char_hash[:dashes] == 0
       valid_hashes(valid_char_idxs)
     else
-      return false, "The card includes wrong number of dashes or spaces"
+      return false, "The card includes wrong number of dashes or spaces."
     end
   end
 
